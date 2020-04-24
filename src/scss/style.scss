@@ -1,0 +1,107 @@
+$color-dark: #3D3D3D;
+$color-gray: #A6ABAB;
+$color-white: #F2F2F2;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font: 'Roboto', sans-serif;
+
+$font-size-s: 16px;
+$font-size-m: 24px;
+$font-size-l: 32px;
+
+
+body {
+  background-color: $color-dark;
+  color: $color-white;
+  font-family: $font;
+}
+
+h3 span button {
+  margin: 0;
+  padding: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.main-title {
+  text-align: center;
+  font-size: $font-size-l
+}
+
+.main-wrap {
+  margin-top: 50px;
+  min-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size-m;
+}
+
+.item {
+  margin-bottom: 24px;
+
+  position: relative;
+}
+
+.question {
+  display: inline;
+  font-weight: 400;
+  margin-right: 20px;
+  font-size: $font-size-m;
+}
+
+.btn,
+.edit {
+  text-align: center;
+  width: 35px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: $color-dark;
+  color: $color-white;
+  font-size: $font-size-m;
+}
+
+.edit {
+  position: absolute;
+  left: -100px;
+}
+
+.wrap-sum {
+  position: absolute;
+  right: 15vw;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  font-size: $font-size-m;
+}
+
+.sum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sum-title {
+  margin-bottom: 10px;
+}
+
+#newString {
+  text-align: center;
+  margin-right: 15px;
+  border-radius: 5px;
+  background-color: $color-dark;
+  color: $color-white;
+  font-size: $font-size-s;
+}

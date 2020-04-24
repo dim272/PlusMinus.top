@@ -1,0 +1,24 @@
+<!doctype html>
+html
+  head
+    link(rel='stylesheet' href='./css/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+  body
+    h1.main-title Статистика входящих звонков
+    div.main-wrap
+      div.wrap-sum
+        div.sum
+          span.sum-title Всего
+          span.sum-total#total 0
+
+      div.wrap-content
+        div.content#string
+          div.item
+            button.edit ✎
+            h3.question Причина звонка 1
+            button.btn.plus +
+            button.btn.minus -
+            span.value 0
+        button#newString Добавить
+
+    script(src='./js/script.js')
