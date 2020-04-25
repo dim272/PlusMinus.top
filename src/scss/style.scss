@@ -9,94 +9,106 @@ $font-size-s: 16px;
 $font-size-m: 24px;
 $font-size-l: 32px;
 
-
-body {
-  background-color: $color-dark;
-  color: $color-white;
+* {
   font-family: $font;
-}
-
-h3 span button {
   margin: 0;
   padding: 0;
 }
 
-.hide {
-  display: none;
+body {
+  background-color: $color-dark;
+  color: $color-white;
 }
 
-.main-title {
-  text-align: center;
-  font-size: $font-size-l
+h1 {
+  font-size: $font-size-l;
 }
 
-.main-wrap {
-  margin-top: 50px;
-  min-width: 30vw;
+span, h3 {
+  font-size: $font-size-m;
+}
+
+button {
+  background-color: $color-gray;
+  color: $color-dark;
+  font-weight: bold;
+  border-radius: 4px;
+  &:active,
+  &:hover,
+  &:focus {
+    border: 1px solid $color-dark;
+  }
+}
+
+.wrap {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  margin-top: 15px;
+  &.header {
+    flex-direction: row;
+    position: relative;
+    width: 60vw;
+    & > .question {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  &.main {
+    width: 60vw;
+    position: relative;
+    margin-top: 30px;
+  }
+}
+
+.edit {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: -30px;
+}
+
+.sum, {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 100%;
+  font-weight: bold;
 }
 
 .content {
-  margin-right: 20px;
-  display: flex;
-  flex-direction: column;
-  font-size: $font-size-m;
+  width: 100%;
 }
 
 .item {
-  margin-bottom: 24px;
-
-  position: relative;
-}
-
-.question {
-  display: inline;
-  font-weight: 400;
-  margin-right: 20px;
-  font-size: $font-size-m;
-}
-
-.btn,
-.edit {
-  text-align: center;
-  width: 35px;
-  margin-right: 10px;
-  border-radius: 5px;
-  background-color: $color-dark;
-  color: $color-white;
-  font-size: $font-size-m;
-}
-
-.edit {
-  position: absolute;
-  left: -100px;
-}
-
-.sum {
-  position: absolute;
-  right: 15vw;
-  top: 0px;
+  width: 100%;
+  margin-top: 10px;
   display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  font-size: $font-size-m;
+  justify-content: flex-start;
 }
 
-.sum-title {
-  margin-bottom: 10px;
+.item > .question {
+  flex: 0 1 75%;
+  font-weight: 100;
+}
+
+.control {
+  flex: 0 1 20%;
+  margin-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn {
+  width: 25px;
+  height: 25px;
+  margin-right: 7px;
 }
 
 #newString {
-  text-align: center;
-  margin: 20px auto;
-  padding: 7px;
-  border-radius: 5px;
-  background-color: $color-dark;
-  color: $color-white;
+  margin-top: 15px;
+  height: 25px;
+  width: 100px;
   font-size: $font-size-s;
 }

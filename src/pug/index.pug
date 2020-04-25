@@ -4,22 +4,30 @@ html
     link(rel='stylesheet' href='./css/style.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
   body
-    h1.main-title Статистика входящих звонков
-    div.main-wrap
 
-      div.sum
-        span.sum-title Всего
-        span.sum-total#total 0
+    div.wrap.body-wrap
 
+      div.wrap.header
 
-      div.content#string
-        div.item
-          button.edit ✎
-          h3.question Причина звонка 1
-          button.btn.plus +
-          button.btn.minus -
-          span.value 0
+        button.edit ✎
 
-      button#newString Добавить
+        h1.question Введите название отчёта
+
+      div.wrap.main
+
+        div.sum
+          span.sum-title Всего
+          span.sum-total#total 0
+
+        div.content#string
+          div.item
+            button.edit ✎
+            h3.question Введите название строки
+            div.control
+              button.btn.plus +
+              button.btn.minus -
+              span.value 0
+
+        button#newString Добавить
 
     script(src='./js/script.js')

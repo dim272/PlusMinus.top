@@ -29,8 +29,6 @@ function serve () {
         server: {
             baseDir: 'build/'
         },
-        port: 8080,
-        notify: false
     });
     gulp.watch ('./src/scss/**/*.scss', css)
     gulp.watch ('./src/pug/**/*.pug', html)
