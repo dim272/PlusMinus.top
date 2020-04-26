@@ -4,8 +4,7 @@ $(function() {
       $('#string').append(`
 
           <div class="item">
-            <button class="edit">✎</button>
-            <h3 class="question">Введите название строки</h3>
+            <h3 class="question" contenteditable="true">Введите название строки</h3>
             <div class="control">
               <button class="btn plus">+</button>
               <button class="btn minus">-</button>
@@ -39,14 +38,6 @@ $(function() {
       }, 0);
 
       $('#total').text(total);
-  });
-
-  $('.body-wrap').on('click', '.question', function (event) {
-      let editButton = $(event.target).prev('.edit');
-
-      editButton.is(':visible')
-        ?   $('.edit').hide()
-        :   ($('.edit').hide(), editButton.show())
   });
 
 });

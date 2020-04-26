@@ -9,9 +9,7 @@ html
 
       div.wrap.header
 
-        button.edit ✎
-
-        h1.question Введите название отчёта
+        h1.question(contenteditable="true") Введите название отчёта
 
       div.wrap.main
 
@@ -21,8 +19,7 @@ html
 
         div.content#string
           div.item
-            button.edit ✎
-            h3.question Введите название строки
+            h3.question(contenteditable="true") Введите название строки
             div.control
               button.btn.plus +
               button.btn.minus -
