@@ -1,6 +1,6 @@
 $(function() {
 
-  $('#newString').on('click', function () {
+  $('#newString').on('click', function (event) {
       $('#string').append(`
 
           <div class="item">
@@ -13,13 +13,20 @@ $(function() {
           </div>
 
         `);
+        let qtString = $('.item').length;
+        localStorage.setItem('qtString', qtString);
   });
 
   let arrSum = [];
-  let total = 0;
+
+  let qtString = localStorage.getItem('qtString');
+  for (i=0;i<qtString;i++) {
+    lStorageStringNum = Number(localStorage.getItem('string'+i));
+    arrSum[i] = lStorageStringNum;
+  };
 
   $('.content').on('click', '.btn', function (event) {
-      let arrElementNumber = $(event.target).closest('.item').index();
+      let elementNumber = $(event.target).closest('.item').index();
       let num = $(event.target).nextAll('.value').text();
 
       if ($(event.target).is('.plus')) {
@@ -31,13 +38,18 @@ $(function() {
 
       $(event.target).nextAll('.value').text(num)
 
-      arrSum[arrElementNumber] = num;
+      arrSum[elementNumber] = num;
 
-      total = arrSum.reduce(function(sum, current) {
+      let total = arrSum.reduce(function(sum, current) {
         return sum + current;
       }, 0);
 
       $('#total').text(total);
+
+      localStorage.setItem('string'+elementNumber, num);
+      localStorage.setItem('total', total);
+      // localStorage.clear();
+      // console.log(localStorage);
   });
 
 });

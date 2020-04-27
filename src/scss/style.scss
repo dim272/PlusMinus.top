@@ -2,22 +2,23 @@ $color-dark: #3D3D3D;
 $color-gray: #A6ABAB;
 $color-white: #F2F2F2;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-$font: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
+$font: 'Arimo', sans-serif;
 
-$font-size-s: 16px;
-$font-size-m: 24px;
-$font-size-l: 32px;
+$font-size-s: 100%;
+$font-size-m: 125%;
+$font-size-l: 150%;
 
-* {
-  font-family: $font;
-  margin: 0;
-  padding: 0;
-}
+$mobile: 560px;
+$tablet: 765px;
+$laptop: 1024px;
+$wscreen: 1400px;
 
 body {
   background-color: $color-dark;
   color: $color-white;
+  font-size: 16px;
+  font-family: $font;
 }
 
 h1 {
@@ -25,6 +26,9 @@ h1 {
 }
 
 span, h3 {
+  @media (min-width: $wscreen) {
+    font-size: $font-size-l;
+  }
   font-size: $font-size-m;
 }
 
@@ -33,11 +37,7 @@ button {
   color: $color-dark;
   font-weight: bold;
   border-radius: 4px;
-  &:active,
-  &:hover,
-  &:focus {
-    border: 1px solid $color-dark;
-  }
+  font-size: $font-size-m;
 }
 
 .wrap {
@@ -46,8 +46,9 @@ button {
   align-items: center;
   margin-top: 15px;
   &.header {
-    flex-direction: row;
-    position: relative;
+    @media (max-width: $mobile) {
+      width: 95vw;
+      }
     width: 60vw;
     & > .question {
       width: 100%;
@@ -55,6 +56,11 @@ button {
     }
   }
   &.main {
+    @media (max-width: $tablet) {
+      width: 95vw;
+      display: flex;
+      flex-direction: column;
+    }
     width: 60vw;
     position: relative;
     margin-top: 30px;
@@ -62,12 +68,28 @@ button {
 }
 
 .sum {
+  @media (max-width: $mobile) {
+    position: relative;
+    display: inline;
+    text-align: center;
+    margin-bottom: 15px;
+    left: 0px;
+  }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    left: 85%;
+  }
+  font-size: $font-size-m;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   left: 105%;
   font-weight: bold;
+  &-title {
+    @media (max-width: $mobile) {
+      margin-right: 15px;
+    }
+  }
 }
 
 .content {
@@ -75,6 +97,9 @@ button {
 }
 
 .item {
+  @media (max-width: $mobile) {
+  margin-bottom: 20px;
+  }
   width: 100%;
   margin-top: 10px;
   display: flex;
@@ -82,12 +107,25 @@ button {
 }
 
 .item > .question {
+  @media (max-width: $mobile) {
+    max-width: 70vw;
+    margin-left: 15px;
+  }
+  @media (min-width: $mobile) and (max-width: $tablet) {
+    max-width: 55vw;
+    margin-left: 30px;
+  }
   flex: 0 1 75%;
   max-width: 45vw;
   font-weight: 100;
+  font-size: $font-size-m;
 }
 
 .control {
+  @media (max-width: $mobile) {
+    min-width: 27vw;
+  }
+  font-size: $font-size-s;
   flex: 0 1 20%;
   margin-left: 20px;
   display: flex;
@@ -95,14 +133,19 @@ button {
 }
 
 .btn {
-  width: 25px;
-  height: 25px;
-  margin-right: 7px;
+  @media (max-width: $mobile) {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  font-size: $font-size-s;
 }
 
 #newString {
-  margin-top: 15px;
-  height: 25px;
-  width: 100px;
+  margin: 20px auto;
+  height: 30px;
   font-size: $font-size-s;
 }

@@ -1,15 +1,21 @@
 <!doctype html>
 html
   head
+    meta(charset="utf-8")
+    link(rel='stylesheet' href='./css/normalize.css')
     link(rel='stylesheet' href='./css/style.css')
+    meta(name="author" content="Dmitry G")
+    title Счётчик для любой задачи
+    meta(name="description" content="Счётчик настраеваемый под любую задачу. Добавляйте новые элементы подсчёта, прибавляйте и отнимайте поступающие данные, формируйте автоматические отчёты и делитесь ими с коллегами.")
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    script(src='./js/lStorage.js')
   body
 
     div.wrap.body-wrap
 
       div.wrap.header
 
-        h1.question(contenteditable="true") Введите название отчёта
+        h1(contenteditable="true") Введите название счетчика
 
       div.wrap.main
 

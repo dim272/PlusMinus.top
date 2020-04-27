@@ -1,26 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-* {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0; }
-
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
 body {
   background-color: #3D3D3D;
-  color: #F2F2F2; }
+  color: #F2F2F2;
+  font-size: 16px;
+  font-family: "Arimo", sans-serif; }
 
 h1 {
-  font-size: 32px; }
+  font-size: 150%; }
 
 span, h3 {
-  font-size: 24px; }
+  font-size: 125%; }
+  @media (min-width: 1400px) {
+    span, h3 {
+      font-size: 150%; } }
 
 button {
   background-color: #A6ABAB;
   color: #3D3D3D;
   font-weight: bold;
-  border-radius: 4px; }
-  button:active, button:hover, button:focus {
-    border: 1px solid #3D3D3D; }
+  border-radius: 4px;
+  font-size: 125%; }
 
 .wrap {
   display: flex;
@@ -28,9 +27,10 @@ button {
   align-items: center;
   margin-top: 15px; }
   .wrap.header {
-    flex-direction: row;
-    position: relative;
     width: 60vw; }
+    @media (max-width: 560px) {
+      .wrap.header {
+        width: 95vw; } }
     .wrap.header > .question {
       width: 100%;
       text-align: center; }
@@ -38,14 +38,33 @@ button {
     width: 60vw;
     position: relative;
     margin-top: 30px; }
+    @media (max-width: 765px) {
+      .wrap.main {
+        width: 95vw;
+        display: flex;
+        flex-direction: column; } }
 
 .sum {
+  font-size: 125%;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   left: 105%;
   font-weight: bold; }
+  @media (max-width: 560px) {
+    .sum {
+      position: relative;
+      display: inline;
+      text-align: center;
+      margin-bottom: 15px;
+      left: 0px; } }
+  @media (min-width: 560px) and (max-width: 765px) {
+    .sum {
+      left: 85%; } }
+  @media (max-width: 560px) {
+    .sum-title {
+      margin-right: 15px; } }
 
 .content {
   width: 100%; }
@@ -55,25 +74,46 @@ button {
   margin-top: 10px;
   display: flex;
   justify-content: flex-start; }
+  @media (max-width: 560px) {
+    .item {
+      margin-bottom: 20px; } }
 
 .item > .question {
   flex: 0 1 75%;
   max-width: 45vw;
-  font-weight: 100; }
+  font-weight: 100;
+  font-size: 125%; }
+  @media (max-width: 560px) {
+    .item > .question {
+      max-width: 70vw;
+      margin-left: 15px; } }
+  @media (min-width: 560px) and (max-width: 765px) {
+    .item > .question {
+      max-width: 55vw;
+      margin-left: 30px; } }
 
 .control {
+  font-size: 100%;
   flex: 0 1 20%;
   margin-left: 20px;
   display: flex;
   justify-content: flex-start; }
+  @media (max-width: 560px) {
+    .control {
+      min-width: 27vw; } }
 
 .btn {
-  width: 25px;
-  height: 25px;
-  margin-right: 7px; }
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  font-size: 100%; }
+  @media (max-width: 560px) {
+    .btn {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px; } }
 
 #newString {
-  margin-top: 15px;
-  height: 25px;
-  width: 100px;
-  font-size: 16px; }
+  margin: 20px auto;
+  height: 30px;
+  font-size: 100%; }
