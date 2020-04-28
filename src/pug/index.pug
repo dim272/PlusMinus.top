@@ -10,27 +10,37 @@ html
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
     script(src='./js/lStorage.js')
   body
-
-    div.wrap.body-wrap
+    div.body-wrap
+      
+      div.clear-wrap.hidden
+        div.clear-box
+          span.clear-title Удалить все данные?
+          button.clear-yes Да
+          button.clear-no Нет
 
       div.wrap.header
-
         h1(contenteditable="true") Введите название счетчика
 
       div.wrap.main
-
+      
         div.sum
           span.sum-title Всего
           span.sum-total#total 0
-
+          button.clear-all 🗑
+      
         div.content#string
           div.item
+            div.delete-block.hidden
+              span.delete-title Удалить строку?
+              button.btn-yes Да
+              button.btn-no Нет
             h3.question(contenteditable="true") Введите название строки
+              button(contenteditable="false").delete-btn.hidden ⨯
             div.control
               button.btn.plus +
               button.btn.minus -
               span.value 0
-
+      
         button#newString Добавить
-
+    
     script(src='./js/script.js')

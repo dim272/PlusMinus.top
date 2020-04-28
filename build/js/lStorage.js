@@ -1,13 +1,13 @@
 $(function() {
   let firstValue = localStorage.getItem('string0')
-    firstValue == 'undefined' || 'NaN' || 'null' ?
-    $('.value').text(firstValue):
-    firstValue = 0 ;
+    firstValue == 'null' ?
+    $('.value').text(0) :
+    $('.value').text(firstValue) ;
 
   let totalValue = localStorage.getItem('total')
     totalValue == 'undefined' || 'NaN' || 'null' ?
-    $('#total').text(totalValue) :
-    totalValue = 0;
+    $('#total').text(0):
+    $('#total').text(totalValue);
 
   let qtString = localStorage.getItem('qtString');
   for (i=1;i<qtString;i++) {
@@ -17,14 +17,21 @@ $(function() {
     };
     $('#string').append(`
 
-        <div class="item">
-          <h3 class="question" contenteditable="true">Введите название строки</h3>
-          <div class="control">
-            <button class="btn plus">+</button>
-            <button class="btn minus">-</button>
-            <span class="value">${n}</span>
+      <div class="item">
+          <div class="delete-block hidden">
+              <span class="delete-title">Удалить строку?</span>
+              <button class="btn-yes">Да</button>
+              <button class="btn-no">Нет</button>
           </div>
-        </div>
+          <h3 class="question" contenteditable="true">
+              Введите название строки
+              <button class="delete-btn hidden" contenteditable="false">⨯</button>
+          </h3>
+          <div class="control">
+              <button class="btn plus">+</button>
+              <button class="btn minus">-</button>
+              <span class="value">${n}</span></div>
+      </div>
 
     `);
   }
