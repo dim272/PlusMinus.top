@@ -1,39 +1,54 @@
-$(function() {
-  let firstValue = localStorage.getItem('string0')
-    firstValue == 'null' ?
-    $('.value').text(0) :
-    $('.value').text(firstValue) ;
+$(function(){
+  let x = JSON.parse(localStorage.getItem('mainArr'));
 
-  let totalValue = localStorage.getItem('total')
-    totalValue == 'undefined' || 'NaN' || 'null' ?
-    $('#total').text(0):
-    $('#total').text(totalValue);
+  if (x == null || x == undefined){
+    $('.box-content').append(`
 
-  let qtString = localStorage.getItem('qtString');
-  for (i=1;i<qtString;i++) {
-    let n = localStorage.getItem('string'+i)
-    if (n == null) {
-    n = 0
-    };
-    $('#string').append(`
-
-      <div class="item">
-          <div class="delete-block hidden">
-              <span class="delete-title">Удалить строку?</span>
-              <button class="btn-yes">Да</button>
-              <button class="btn-no">Нет</button>
-          </div>
-          <h3 class="question" contenteditable="true">
-              Введите название строки
-              <button class="delete-btn hidden" contenteditable="false">⨯</button>
-          </h3>
-          <div class="control">
-              <button class="btn plus">+</button>
-              <button class="btn minus">-</button>
-              <span class="value">${n}</span></div>
+      <div class="string">
+        <span class="text" contenteditable="true">Введите название строки</span>
+        <button class="delete-string hidden">⨯</button>
+        <button class="plusminus">+</button>
+        <button class="plusminus">-</button>
+        <span class="number" contenteditable="true">0</span>
+        <span class="text-del-string hidden">Удалить строку?
+          <button class="yes">Да</button>
+          <button class="no">Нет</button>
+        </span>
       </div>
 
-    `);
+      `)
+  } else {
+    for (let i=0;i<x.length;i++) {
+      $('.box-content').append(`
+
+        <div class="string">
+          <span class="text" contenteditable="true">${x[i].text}</span>
+          <button class="delete-string hidden">⨯</button>
+          <button class="plusminus">+</button>
+          <button class="plusminus">-</button>
+          <span class="number" contenteditable="true">${x[i].number}</span>
+          <span class="text-del-string hidden">Удалить строку?
+            <button class="yes">Да</button>
+            <button class="no">Нет</button>
+          </span>
+        </div>
+
+        `)
+      }
+  };
+
+  let total = localStorage.getItem('total');
+  if (total == null || total == undefined){
+    $('.total-num').text(0);
+  } else {
+    $('.total-num').text(total);
   }
 
-});
+
+  let mainTitle = localStorage.getItem('main-title');
+  if (mainTitle == null || mainTitle == undefined){
+    $('.main-title').text('Введите название счетчика');
+  } else {
+    $('.main-title').text(mainTitle);
+  }
+})

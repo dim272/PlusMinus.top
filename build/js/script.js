@@ -1,143 +1,197 @@
 $(function() {
 
-// Поведение кнопки "Добавить"
+/*
+Навигация по коду / Code menu
 
-  $('#newString').on('click', function (event) {
-      $('#string').append(`
+- mainArr - основной массив с обектами
+  в нёго добавляются объекты, количество которых зависит от количества строк
+  в каждом объекте два ключа: text: 'текст строки',
+                              number: 'число строки'
+- Функции
 
-        <div class="item">
-            <div class="delete-block hidden">
-                <span class="delete-title">Удалить строку?</span>
-                <button class="btn-yes">Да</button>
-                <button class="btn-no">Нет</button>
-            </div>
-            <h3 class="question" contenteditable="true">
-                Введите название строки
-                <button class="delete-btn hidden" contenteditable="false">⨯</button>
-            </h3>
-            <div class="control">
-                <button class="btn plus">+</button>
-                <button class="btn minus">-</button>
-                <span class="value">0</span></div>
-        </div>
 
-        `);
+Кнопки / Buttons:
+ - +/- (.plusminus) прибавляет и отнимает число строки
+ - Добавить (#newString) - Добавляет новую строку
+ - Удалить (.delete-string) - вызывает запрос удаления строки
+ - Да (.yes) - удаляет строку
+ - Нет (.no) - закрывает запрос удаления строки
+ - Кнопка "Корзина" (.clear-all) Вызывает запрос на удаление всех данных
+ - Стереть всё? - Нет (.clear-no) - отменяет удаление всех данных
+ - Стереть всё? - Да (.clear-yes) - полностью обнуляет счётчик и хранилище
 
-        // Добавление в массив значания общего количества строк qtString
+Отслеживание blur с
+  строки ввода текста
+  числа
+  главного заголовка
 
-        let qtString = $('.item').length;
-        localStorage.setItem('qtString', qtString);
-  });
+*/
 
-// Массив в который добавляются циферные значения каждой строки
-// для последующего суммирования
+  // Вынимаем массив из localStorage
+  let mainArr = JSON.parse(localStorage.getItem('mainArr'));
 
-  let arrSum = [];
+  // Если он пуст, создаём массив с первой пустой строкой
+  if (mainArr == null) {
+    mainArr = [{'text': 'Введите название строки',
+                  'number': 0}]
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
+  }
 
-//  Добавление в массив значений из хранилища при загрузке страницы
+  //Добавляет в массив число строки. Срабатывает при нажатии +/-
+  function newNum(event){
+    let z = $(event.target).closest('.string').index();
+    let strNum = Number ($(event.target).nextAll('.number').text());
+    let strVal = $(event.target).prevAll('.text').text();
+    mainArr[z] = { text: strVal, number: strNum };
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
+  }
 
-  let qtString = localStorage.getItem('qtString');
-  for (i=0;i<qtString;i++) {
-    lStorageStringNum = Number(localStorage.getItem('string'+i));
-    arrSum[i] = lStorageStringNum;
-    arrCalc();
-  };
+  //Добавляет в массив текст строки. Срабатывает при blur с текста
+  function newText(event) {
+    let z = $(event.target).closest('.string').index();
+    let strNum = Number ($(event.target).nextAll('.number').text());
+    let strVal = $(event.target).text();
+    mainArr[z] = { text: strVal, number: strNum };
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
+  }
 
-// Поведение кнопок + и -
-
-  $('.content').on('click', '.btn', function (event) {
-      let elementNumber = $(event.target).closest('.item').index();
-      let num = $(event.target).nextAll('.value').text();
-
-      if ($(event.target).is('.plus')) {
-        num++
-      }
-      if ($(event.target).is('.minus')) {
-        num--
-      }
-
-      $(event.target).nextAll('.value').text(num)
-
-      // Добавление полученого значения в массив с номером строки elementNumber
-      arrSum[elementNumber] = num;
-
-      // Добавление в хранилище значения строки с ключём в виде её номера
-      localStorage.setItem('string'+elementNumber, num);
-
-      arrCalc();
-  });
-
-  // Сложение всех чисел массива
-  function arrCalc () {
-    let total = arrSum.reduce(function (sum, current) {
+  // Передаёт number всех объектов общего массива в массив total,
+  // складывает все числа массива total
+  // передаёт значение в .total-num и локальное хранилище
+  function calcTotal() {
+    let total = [];
+    let x = mainArr.length;
+    for (let i=0;i<x;i++) {
+      total[i] = mainArr[i].number;
+    }
+    let totalNum = total.reduce(function (sum, current) {
       return sum + current;
     }, 0);
-
-    $('#total').text(total);
-
-    // Добавление в хранилище общей суммы масива с ключем "total"
-    localStorage.setItem('total', total);
-    // localStorage.clear();
-    // console.log(localStorage);
+    $('.total-num').text(totalNum);
+    localStorage.setItem('total', totalNum);
   };
 
-// Поведение кнопок удаления строки
+  // Поведение кнопок +/-
+  $('.box-content').on('mousedown', '.plusminus', function(event) {
+    let x = $(event.target).nextAll('.number').text();
+    let val = $(event.target).text(); // +/-
 
-  $('h3.question').on('click', function(event) {
-    $('.delete-btn').addClass('hidden');
-    $(event.target).children('.delete-btn').removeClass('hidden');
+    if (val == '+') {
+        x++
+      } else {
+        x--
+      }
+
+    $(event.target).nextAll('.number').text(x);
+
+    newNum(event);
+    calcTotal();
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
   });
 
-  $('.delete-btn').on('click', function(event) {
-    $(event.target).closest('.question').prevAll('.delete-block').removeClass('hidden');
+  // Кнопка "Добавить" добавляет новый div.string в div.box-content
+  $('#newString').on('mousedown', function newString() {
+    $('.box-content').append(`
+
+      <div class="string">
+        <span class="text" contenteditable="true">Введите название строки</span>
+        <button class="delete-string hidden">⨯</button>
+        <button class="plusminus">+</button>
+        <button class="plusminus">-</button>
+        <span class="number" contenteditable="true">0</span>
+        <span class="text-del-string hidden">Удалить строку?
+          <button class="yes">Да</button>
+          <button class="no">Нет</button>
+        </span>
+      </div>
+
+      `)
+    //Добавляет значение новой строки в массив по её номеру
+    let x = $('.box-content > .string').length;
+    x = x - 1;
+    mainArr[x] = {'text': 'Введите название строки',
+                  'number': 0}
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
   });
 
-  $('.btn-no').on('click',function(event) {
-    $(event.target).closest('.delete-block').addClass('hidden');
-    console.log(localStorage);
-
-    let x = localStorage.getItem('string0');
-
-    console.log(x);
+  // Показать кнопку "x" на выбранной строке, скрыть на остальных
+  $('.box-content').on('mousedown', '.text', function(event) {
+    $('.delete-string').addClass('hidden');
+    $(event.target).nextAll('.delete-string').removeClass('hidden');
   });
 
-  $('.btn-yes').on('click', function(event) {
-    let n = $(event.target).closest('.item').index();
-    $(event.target).closest('.item').remove();
-    arrSum.splice(n,1);
-    localStorage.removeItem('string'+n);
-    let qS = localStorage.getItem('qtString');
-    console.log(qS);
-    qS = Number (qS);
-    qS = qS - 1;
-    console.log(qS);
-    localStorage.setItem('qtString', qS);
-    console.log(localStorage);
-    arrCalc();
+  // Не получается использовать blur для скрытия кнопки х, когда уходишь с строки
+  // Здесь отслеживаем все нажатия вне кнопки х и поля введения текста строки
+  $(document).on('mousedown', function(event){
+		let x = $('.delete-string');
+    let y = $('.text');
+		if ( !x.is(event.target) && !y.is(event.target) ){
+			$('.delete-string').addClass('hidden')
+		}
+	});
+
+  // Показ запроса на удаление строки
+  $('.box-content').on('mousedown', '.delete-string', function(event) {
+    $(event.target).addClass('hidden');
+    $(event.target).nextAll('.text-del-string').removeClass('hidden');
   });
 
-  $('*').on('click', function(event) {
-    let h3Question = $('h3.question');
-    let deleteBtn = $('.delete-btn')
-    if (!h3Question.is(event.target) && !deleteBtn.is(event.target)) {
-    $('.delete-btn').addClass('hidden');
-    };
+  // Кнопка НЕТ - на запросе удаления строки
+  $('.box-content').on('mousedown', '.no', function(event) {
+    $(event.target).closest('.text-del-string').addClass('hidden')
+  });
+  // Кнопка ДА - на запросе удаления строки
+  $('.box-content').on('mousedown', '.yes', function(event) {
+    let x = $(event.target).closest('.string').index();
+    mainArr.splice(x, 1); // Удаляем объект из массива по номеру строки
+    $(event.target).closest('.string').remove();
+    calcTotal();
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
   });
 
-  // Кнопка удаления ВСЕХ данных, отчистка localStorage и массива arrSum
-
-  $('.clear-all').on('click', function() {
-    $('.clear-wrap').removeClass('hidden');
+  // Нажатие на кнопку "Корзина"
+  $('.clear-all').on('mousedown', function() {
+    $('.box-clear-all').removeClass('hidden');
   });
 
-  $('.clear-no').on('click', function() {
-    $('.clear-wrap').addClass('hidden');
+  // Кнопка НЕТ при запросе удаления всех данных
+  $('.clear-no').on('mousedown', function() {
+    $('.box-clear-all').addClass('hidden');
   });
-
-  $('.clear-yes').on('click', function() {
+  // Кнопка Да при запросе удаления всех данных
+  // Обнуляет массив, обновляет страницу
+  $('.clear-yes').on('mouseup', function() {
+    while (mainArr.length > 0) {mainArr.pop()}
     localStorage.clear();
-    arrSum.splice(0);
     location.reload();
+  });
+
+  //При каждом blur с текста строки добавляет его значение в массив и хранилище
+  $('.box-content').on('blur', '.text', function(event) {
+      newText(event);
+      console.log(mainArr);
+  });
+
+  // При каждом blur после введения цифры в строке
+      // 1. Добавляет новые данные в массив
+      // 2. Добавляет новые значения в массив
+      // 3. Вызывает функцию подсчёта сумы calcTotal()
+      // 4. Перезаписывает обновлённый массив в хранилище
+  $('.box-content').on('blur', '.number', function(event) {
+      let z = $(event.target).closest('.string').index();
+      let strNum = Number ($(event.target).text());
+      let strVal = $(event.target).prevAll('.text').text();
+      mainArr[z] = { text: strVal, number: strNum }
+      calcTotal();
+      localStorage.setItem('mainArr', JSON.stringify(mainArr))
+  });
+
+  //Отслеживаем blur с названия счетчика (.main-title)
+  //и добавяем его текст в хранилище
+  $('.main-title').on('blur', function() {
+    let x = $(this).text();
+    localStorage.setItem('main-title', x);
+    console.log(localStorage);
   });
 
 });
