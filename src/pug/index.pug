@@ -1,31 +1,35 @@
 <!doctype html>
-html
-  head
-    meta(charset="utf-8")
-    link(rel='stylesheet' href='./css/normalize.css')
-    link(rel='stylesheet' href='./css/style.css')
-    meta(name="author" content="Dmitry G")
-    title Счётчик для любой задачи
-    meta(name="description" content="Счётчик настраеваемый под любую задачу. Добавляйте новые элементы подсчёта, прибавляйте и отнимайте поступающие данные, формируйте автоматические отчёты и делитесь ими с коллегами.")
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
-    script(src='./js/lStorage.js')
-  body
-    div.body-wrap
-      
-      h1.main-title(contenteditable="true") Введите название счетчика
-      
-      div.box-control
-        span.total-text Всего
+head
+  meta(charset='utf-8')
+  link(rel='stylesheet' href='./css/normalize.css')
+  link(rel='stylesheet' href='./css/style.css')
+  link(rel='stylesheet' href='./css/icon.css')
+  meta(name='author' content='Dmitry G')
+  title Счётчик для любой задачи 
+  meta(name='description' content='Счётчик настраеваемый под любую задачу. Добавляйте новые элементы подсчёта, прибавляйте и отнимайте поступающие данные, формируйте автоматические отчёты и делитесь ими с коллегами.')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+  script(src='./js/lStorage.js')
+body
+  .body-wrap
+    h1.main-title(contenteditable='true') Введите название счетчика
+    .box-control
+      .total
+        span.total-text Всего:
         span.total-num 0
-        button.clear-all 🗑
-      
-      div.box-clear-all.hidden
-        span.clear-text Стереть все данные?
-          button.clear-yes Да
-          button.clear-no Нет
-      
-      div.box-content
-      
-      button#newString Добавить
-    
-    script(src='./js/script.js')
+      .control
+        button.clear-all
+          span.icon-trash
+        button.zero
+          span.icon-refresh
+    #clearText.box-clear.hidden
+      span.clear-text Стереть все данные?
+        button#clearTextYes.clear-yes Да
+        button#clearTextNo.clear-no Нет
+    #clearNum.box-clear.hidden
+      span.clear-text Обнулить все числа?
+        button#clearNumYes.clear-yes Да
+        button#clearNumNo.clear-no Нет
+    .box-content
+    button#newString
+      span.icon-plus2
+  script(src='./js/script.js')

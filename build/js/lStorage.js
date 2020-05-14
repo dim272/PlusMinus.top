@@ -6,9 +6,9 @@ $(function(){
 
       <div class="string">
         <span class="text" contenteditable="true">Введите название строки</span>
-        <button class="delete-string hidden">⨯</button>
-        <button class="plusminus">+</button>
-        <button class="plusminus">-</button>
+        <button class="delete-string icon-cross hidden"></button>
+        <button class="plusminus icon-plus" value="+"></button>
+        <button class="plusminus icon-minus value="-""></button>
         <span class="number" contenteditable="true">0</span>
         <span class="text-del-string hidden">Удалить строку?
           <button class="yes">Да</button>
@@ -23,9 +23,9 @@ $(function(){
 
         <div class="string">
           <span class="text" contenteditable="true">${x[i].text}</span>
-          <button class="delete-string hidden">⨯</button>
-          <button class="plusminus">+</button>
-          <button class="plusminus">-</button>
+          <button class="delete-string icon-cross hidden"></button>
+          <button class="plusminus icon-plus" value="+"></button>
+          <button class="plusminus icon-minus value="-""></button>
           <span class="number" contenteditable="true">${x[i].number}</span>
           <span class="text-del-string hidden">Удалить строку?
             <button class="yes">Да</button>

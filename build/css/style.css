@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
 body {
   background-color: #2F3137;
   color: #FBFBFB;
@@ -12,6 +13,7 @@ button {
   height: 35px; }
   button:focus, button:hover {
     outline: none;
+    border: none;
     text-shadow: -1px 1px 20px #2EE2FF, 1px -1px 20px #2EE2FF, 3px -3px 10px rgba(46, 226, 255, 0.5), -3px 3px 10px rgba(46, 226, 255, 0.5), -6px 6px 20px rgba(46, 226, 255, 0.25), 6px -6px 20px rgba(46, 226, 255, 0.25);
     color: #FBFBFB; }
 
@@ -19,95 +21,95 @@ button {
   display: none; }
 
 .body-wrap {
-  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  align-content: center;
+  justify-content: center; }
 
 .main-title {
   max-width: 90vw;
   font-size: 150%;
   margin: 5vw 5vw 3vw; }
-  @media (max-width: 500px) {
-    .main-title {
-      font-size: 125%; } }
 
-@media (max-width: 740px) {
-  .box-control {
-    width: 30vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center; } }
-
-@media (min-width: 740px) {
-  .box-control {
-    position: absolute;
-    top: 190px;
-    right: 17%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
+@media (max-width: 500px) {
+  .main-title {
     font-size: 125%; } }
 
-.clear-all {
-  width: 40px;
-  text-align: center; }
-  @media (min-width: 1080px) {
-    .clear-all {
-      margin-top: 20px; } }
+.box-control {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 125%;
+  font-weight: bold; }
 
-.box-clear-all {
+.total-text {
+  margin-left: auto; }
+
+.total-num {
+  padding: 0 10px; }
+
+.box-clear {
   position: absolute;
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: rgba(47, 49, 55, 0.8); }
+  background-color: rgba(47, 49, 55, 0.9); }
 
 .clear-text {
   display: block;
-  width: 350px;
-  margin: 200px auto; }
+  text-align: center;
+  width: 500px;
+  margin: 300px auto; }
   .clear-text > button {
-    margin-left: 30px;
+    margin-left: 20px;
     width: 50px;
     height: 30px; }
 
 .box-content {
   display: flex;
   flex-direction: column;
-  margin: 50px 2vw 50px; }
-  @media (max-width: 500px) {
-    .box-content {
-      max-width: 90vw; } }
+  margin: 25px auto; }
+
+@media (max-width: 500px) {
+  .box-content {
+    width: 90vw; } }
 
 .string {
   position: relative;
-  width: 45vw;
+  width: 60vw;
   display: flex;
-  justify-content: space-between;
-  align-items: center; }
-  @media (max-width: 500px) {
-    .string {
-      width: 90vw; } }
+  align-items: center;
+  justify-content: space-between; }
+
+@media (max-width: 740px) {
+  .string {
+    width: 90vw; } }
 
 .text {
   font-size: 125%;
   flex: 2 1 70%;
   margin-left: 5px; }
-  @media (max-width: 500px) {
-    .text {
-      font-size: 100%; } }
+
+@media (max-width: 500px) {
+  .text {
+    font-size: 100%; } }
+
+.plusminus {
+  margin-right: 10px;
+  font-size: 125%; }
 
 .number {
   font-size: 125%;
   text-align: center;
   flex: 1 1 15%; }
-  @media (max-width: 500px) {
-    .number {
-      font-size: 100%; } }
+
+@media (max-width: 500px) {
+  .number {
+    font-size: 100%; } }
 
 .delete-string {
   position: absolute;
@@ -118,7 +120,7 @@ button {
   position: absolute;
   width: 100%;
   text-align: center;
-  background-color: rgba(47, 49, 55, 0.8);
+  background-color: rgba(47, 49, 55, 0.9);
   z-index: 1; }
 
 .yes, .no {
@@ -127,6 +129,7 @@ button {
   height: 30px; }
 
 #newString {
-  max-width: 100px;
-  padding: 0 5px;
-  margin-bottom: 35px; }
+  width: 50px; }
+
+.icon-plus2 {
+  font-size: 200%; }

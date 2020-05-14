@@ -74,7 +74,7 @@ $(function() {
   // Поведение кнопок +/-
   $('.box-content').on('mousedown', '.plusminus', function(event) {
     let x = $(event.target).nextAll('.number').text();
-    let val = $(event.target).text(); // +/-
+    let val = $(event.target).val(); // +/-
 
     if (val == '+') {
         x++
@@ -95,9 +95,9 @@ $(function() {
 
       <div class="string">
         <span class="text" contenteditable="true">Введите название строки</span>
-        <button class="delete-string hidden">⨯</button>
-        <button class="plusminus">+</button>
-        <button class="plusminus">-</button>
+        <button class="delete-string icon-cross hidden"></button>
+        <button class="plusminus icon-plus" value="+"></button>
+        <button class="plusminus icon-minus value="-""></button>
         <span class="number" contenteditable="true">0</span>
         <span class="text-del-string hidden">Удалить строку?
           <button class="yes">Да</button>
@@ -151,19 +151,40 @@ $(function() {
 
   // Нажатие на кнопку "Корзина"
   $('.clear-all').on('mousedown', function() {
-    $('.box-clear-all').removeClass('hidden');
+    $('#clearText').removeClass('hidden');
   });
 
   // Кнопка НЕТ при запросе удаления всех данных
-  $('.clear-no').on('mousedown', function() {
-    $('.box-clear-all').addClass('hidden');
+  $('#clearTextNo').on('mousedown', function() {
+    $('#clearText').addClass('hidden');
   });
   // Кнопка Да при запросе удаления всех данных
   // Обнуляет массив, обновляет страницу
-  $('.clear-yes').on('mouseup', function() {
+  $('#clearTextYes').on('mouseup', function() {
     while (mainArr.length > 0) {mainArr.pop()}
     localStorage.clear();
     location.reload();
+  });
+
+  // Нажатие на кнопку "0"
+  $('.zero').on('mousedown', function() {
+    $('#clearNum').removeClass('hidden');
+  });
+
+  // Кнопка НЕТ при запросе удаления всех данных
+  $('#clearNumNo').on('mousedown', function() {
+    $('#clearNum').addClass('hidden');
+  });
+  // Кнопка Да при запросе удаления всех данных
+  // Обнуляет массив, обновляет страницу
+  $('#clearNumYes').on('mouseup', function() {
+    let x = mainArr.length;
+    for (let i=0; i<x; i++) {
+      mainArr[i].number = 0;
+    }
+    $('.total-num').text(0);
+    $('.number').text(0);
+    $('#clearNum').addClass('hidden');
   });
 
   //При каждом blur с текста строки добавляет его значение в массив и хранилище

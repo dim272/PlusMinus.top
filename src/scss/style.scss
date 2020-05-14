@@ -1,7 +1,7 @@
 $col-dark: #2F3137;
 $col-white: #FBFBFB;
 $col-blue: #21A3B8;
-$col-dark-op: rgba(47, 49, 55, 0.8);
+$col-dark-op: rgba(47, 49, 55, 0.9);
 $col-none: rgba(47, 49, 55, 0);
 
 @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
@@ -22,10 +22,12 @@ $font-s: 100%;
 $font-m: 125%;
 $font-l: 150%;
 
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
+
 body {
   background-color: $col-dark;
   color: $col-white;
-  font-family: $font;
+  font-family: "Arimo", sans-serif;
 }
 
 button {
@@ -34,9 +36,10 @@ button {
   color: $col-blue;
   width: 35px;
   height: 35px;
-  &:focus,
-  &:hover  {
+
+  &:focus, &:hover {
     outline: none;
+    border: none;
     text-shadow: $btn-hover-shadow;
     color: $col-white;
   }
@@ -47,55 +50,45 @@ button {
 }
 
 .body-wrap {
-  width: 100%;
   position: relative;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .main-title {
-  @media (max-width: $mob){
-    font-size: $font-m;
-  }
   max-width: 90vw;
   font-size: $font-l;
   margin: 5vw 5vw 3vw;
 }
 
-.box-control {
-  @media (max-width: $tab) {
-    width: 30vw;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
-  @media (min-width: $tab) {
-    position: absolute;
-    top: 190px;
-    right: 17%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    font-weight: bold;
+@media (max-width: $mob) {
+  .main-title {
     font-size: $font-m;
   }
 }
 
-.clear-all {
-  width: 40px;
-  text-align: center;
-    @media (min-width: $des){
-    margin-top: 20px;
-    }
+.box-control {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-m;
+  font-weight: bold;
 }
 
-.box-clear-all {
+.total-text {
+  margin-left: auto;
+}
+
+.total-num {
+  padding: 0 10px;
+}
+
+.box-clear {
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -104,52 +97,71 @@ button {
 }
 
 .clear-text {
-    display: block;
-    width: 350px;
-    margin: 200px auto;
-  &>button {
-    margin-left: 30px;
+  display: block;
+  text-align: center;
+  width: $mob;
+  margin: 300px auto;
+
+  > button {
+    margin-left: 20px;
     width: 50px;
     height: 30px;
   }
 }
 
 .box-content {
-  @media (max-width: $mob) {
-    max-width: 90vw;
-  }
   display: flex;
   flex-direction: column;
-  margin: 50px 2vw 50px;
+  margin: 25px auto;
 }
 
-.string{
-  @media (max-width: $mob) {
+@media (max-width: $mob) {
+  .box-content {
     width: 90vw;
   }
+}
+
+.string {
   position: relative;
-  width: 45vw;
+  width: 60vw;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: $tab) {
+  .string {
+    width: 90vw;
+  }
 }
 
 .text {
-  @media (max-width: $mob) {
-    font-size: $font-s;
-  }
   font-size: $font-m;
   flex: 2 1 70%;
   margin-left: 5px;
 }
 
-.number {
-  @media (max-width: $mob) {
+@media (max-width: $mob) {
+  .text {
     font-size: $font-s;
   }
+}
+
+.plusminus {
+  margin-right: 10px;
+  font-size: $font-m;
+}
+
+.number {
   font-size: $font-m;
   text-align: center;
   flex: 1 1 15%;
+}
+
+@media (max-width: $mob) {
+  .number {
+    font-size: $font-s;
+  }
 }
 
 .delete-string {
@@ -173,7 +185,9 @@ button {
 }
 
 #newString {
-  max-width: 100px;
-  padding: 0 5px;
-  margin-bottom: 35px;
+  width: 50px;
+}
+
+.icon-plus2 {
+  font-size: 200%;
 }
