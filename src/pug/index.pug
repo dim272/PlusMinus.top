@@ -21,6 +21,8 @@ body
           span.icon-trash
         button.zero
           span.icon-refresh
+        button.report
+          span.icon-share1
     #clearText.box-clear.hidden
       span.clear-text Стереть все данные?
         button#clearTextYes.clear-yes Да
@@ -29,6 +31,14 @@ body
       span.clear-text Обнулить все числа?
         button#clearNumYes.clear-yes Да
         button#clearNumNo.clear-no Нет
+    #boxReport.box-clear.hidden
+      .wrap-report
+        button.closeReport
+          span.icon-cross
+        #report(contenteditable='true')
+        .report-buttons
+          button#coppy
+            span.icon-save
     .box-content
     button#newString
       span.icon-plus2

@@ -182,6 +182,8 @@ $(function() {
     for (let i=0; i<x; i++) {
       mainArr[i].number = 0;
     }
+    localStorage.setItem('total', 0);
+    localStorage.setItem('mainArr', JSON.stringify(mainArr))
     $('.total-num').text(0);
     $('.number').text(0);
     $('#clearNum').addClass('hidden');
@@ -212,7 +214,33 @@ $(function() {
   $('.main-title').on('blur', function() {
     let x = $(this).text();
     localStorage.setItem('main-title', x);
-    console.log(localStorage);
+  });
+
+  $('.report').on('mousedown', function() {
+    $('#boxReport').removeClass('hidden');
+    let title = $('.main-title').text();
+    $('#report').append(`<b>${title}</b>\n</br>`)
+    let total = $('.total-num').text();
+    $('#report').append(`Всего: ${total}\n</br>`)
+    let x = mainArr.length;
+    for (let i=0;i<x;i++) {
+      let text = mainArr[i].text;
+      let num = mainArr[i].number;
+      $('#report').append(`${text}: ${num}\n</br>`)
+    }
+  });
+
+  $('.closeReport').on('mousedown', function() {
+    $('#boxReport').addClass('hidden');
+    $('#report').text('');
+  });
+
+  $('#coppy').on('mousedown', function () {
+      let tmp = $("<textarea>");
+      $("body").append(tmp);
+      tmp.val($('#report').text()).select();
+      document.execCommand("copy");
+      tmp.remove();
   });
 
 });

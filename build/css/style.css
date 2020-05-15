@@ -46,11 +46,14 @@ button {
   font-size: 125%;
   font-weight: bold; }
 
+.total {
+  margin-bottom: 10px; }
+
 .total-text {
   margin-left: auto; }
 
 .total-num {
-  padding: 0 10px; }
+  margin-left: 10px; }
 
 .box-clear {
   position: absolute;
@@ -68,6 +71,23 @@ button {
     margin-left: 20px;
     width: 50px;
     height: 30px; }
+
+.wrap-report {
+  margin: 100px auto;
+  width: 400px; }
+
+.closeReport {
+  position: relative;
+  right: 50px;
+  top: 35px;
+  font-size: 100%; }
+
+#report {
+  font-family: "Arimo", sans-serif;
+  font-size: 125%; }
+
+.report-buttons {
+  margin-top: 10px; }
 
 .box-content {
   display: flex;

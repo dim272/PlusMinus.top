@@ -80,12 +80,16 @@ button {
   font-weight: bold;
 }
 
+.total {
+  margin-bottom: 10px;
+}
+
 .total-text {
   margin-left: auto;
 }
 
 .total-num {
-  padding: 0 10px;
+  margin-left: 10px;
 }
 
 .box-clear {
@@ -107,6 +111,27 @@ button {
     width: 50px;
     height: 30px;
   }
+}
+
+.wrap-report {
+  margin: 100px auto;
+  width: 400px;
+}
+
+.closeReport {
+  position: relative;
+  right: 50px;
+  top: 35px;
+  font-size: $font-s;
+}
+
+#report {
+  font-family: $font;
+  font-size: $font-m;
+}
+
+.report-buttons {
+  margin-top: 10px;
 }
 
 .box-content {
