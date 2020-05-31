@@ -166,6 +166,7 @@ $(function() {
   $('#clearTextNo').on('mousedown', function() {
     $('#clearText').addClass('hidden');
   });
+
   // Кнопка Да при запросе удаления всех данных
   // Обнуляет массив, обновляет страницу
   $('#clearTextYes').on('mouseup', function() {
@@ -174,6 +175,8 @@ $(function() {
     $('#clearText').addClass('hidden');
     $('.box-content').html('');
     localStorage.setItem('total', 0);
+    localStorage.setItem('main-title', 'Введите название счетчика');
+    $('.main-title').text('Введите название счетчика');
     newString();
   });
 
@@ -186,6 +189,7 @@ $(function() {
   $('#clearNumNo').on('mousedown', function() {
     $('#clearNum').addClass('hidden');
   });
+
   // Кнопка Да при запросе удаления всех данных
   // Обнуляет массив, обновляет страницу
   $('#clearNumYes').on('mouseup', function() {
