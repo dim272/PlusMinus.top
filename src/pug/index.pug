@@ -1,22 +1,22 @@
-<!doctype html>
+doctype html
+
 head
   meta(charset='utf-8')
-  link(rel='stylesheet' href='./css/normalize.css')
-  link(rel='stylesheet' href='./css/style.css')
-  link(rel='stylesheet' href='./css/icon.css')
+  meta(name="viewport" content="width=device-width, initial-scale=1")
+  link(rel='stylesheet' href='./css/style.min.css')
   meta(name='author' content='Dmitry G')
   title Счётчик для любой задачи 
   meta(name='description' content='Счётчик настраеваемый под любую задачу. Добавляйте новые элементы подсчёта, прибавляйте и отнимайте поступающие данные, формируйте автоматические отчёты и делитесь ими с коллегами.')
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
   script(src='./js/lStorage.js')
-body
-  .body-wrap
+body.flex
+  .body-wrap.flex
     h1.main-title(contenteditable='true') Введите название счетчика
-    .box-control
-      .total
+    .box-control.flex
+      .total.flex
         span.total-text Всего:
-        span.total-num 0
-      .control
+        span.total-num 
+      .control.flex
         button.clear-all
           span.icon-trash
         button.zero
@@ -24,22 +24,25 @@ body
         button.report
           span.icon-share1
     #clearText.box-clear.hidden
-      span.clear-text Стереть все данные?
+      .box-wrap.flex
         button#clearTextYes.clear-yes Да
+        p.clear-text Стереть все данные?
         button#clearTextNo.clear-no Нет
     #clearNum.box-clear.hidden
-      span.clear-text Обнулить все числа?
+      .box-wrap.flex
         button#clearNumYes.clear-yes Да
+        p.clear-text Обнулить все числа?
         button#clearNumNo.clear-no Нет
     #boxReport.box-clear.hidden
-      .wrap-report
+      div.report-wrap.flex
         button.closeReport
           span.icon-cross
         #report(contenteditable='true')
-        .report-buttons
+        div.report-buttons.flex
           button#coppy
             span.icon-save
-    .box-content
+    .box-content.flex
     button#newString
       span.icon-plus2
   script(src='./js/script.js')
+  script(src='./js/yametrik.js')
