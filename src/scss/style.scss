@@ -1,11 +1,14 @@
+@import "icon.scss";
+@import "normalize.scss";
+
 $col-dark: #2F3137;
 $col-white: #FBFBFB;
 $col-blue: #21A3B8;
-$col-dark-op: rgba(47, 49, 55, 0.9);
+$col-dark-op: rgba(47, 49, 55, 0.95);
 $col-none: rgba(47, 49, 55, 0);
 
-@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap');
-$font: 'Arimo', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+$font: 'PT Sans', sans-serif;
 
 $btn-hover-shadow:  -1px 1px 20px #2EE2FF,
                     1px -1px 20px #2EE2FF,
@@ -14,20 +17,39 @@ $btn-hover-shadow:  -1px 1px 20px #2EE2FF,
                     -6px 6px 20px rgba(46,226,255,0.25),
                     6px -6px 20px rgba(46,226,255,0.25);
 
-$mob: 500px;
-$tab: 740px;
-$des: 1080px;
+$mob: 414px;
+$tab: 768px;
+$des: 1366px;
 
 $font-s: 100%;
 $font-m: 125%;
 $font-l: 150%;
 
-@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap");
+$mar-top: 20px;
 
 body {
   background-color: $col-dark;
   color: $col-white;
-  font-family: "Arimo", sans-serif;
+  font-family: $font;
+  justify-content: center;
+  align-items: flex-start;
+  @media (min-width: $tab) {
+    font-size: $font-m;
+  }
+  @media (min-width: $des) {
+    font-size: $font-l;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $col-blue;
+  &:hover{
+    outline: none;
+    border: none;
+    text-shadow: $btn-hover-shadow;
+    color: $col-white;
+  }
 }
 
 button {
@@ -49,170 +71,180 @@ button {
   display: none;
 }
 
-.body-wrap {
-  position: relative;
+.flex {
   display: flex;
+}
+
+.body-wrap {
+  width: 100vw;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-  justify-content: center;
+  @media (min-width: $tab) {
+    max-width: 70vw;
+    margin-top: $mar-top;
+  }
+  @media (min-width: $des) {
+    max-width: 50vw;
+    margin-top: 8vw;
+  }
 }
 
 .main-title {
-  max-width: 90vw;
+  text-align: center;
   font-size: $font-l;
-  margin: 5vw 5vw 3vw;
-}
-
-@media (max-width: $mob) {
-  .main-title {
-    font-size: $font-m;
-  }
 }
 
 .box-control {
-  width: 350px;
-  display: flex;
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  font-size: $font-m;
-  font-weight: bold;
+  @media (min-width: $tab) {
+    margin-top: $mar-top;
+  }
 }
 
 .total {
-  margin-bottom: 10px;
-}
-
-.total-text {
-  margin-left: auto;
-}
-
-.total-num {
-  margin-left: 10px;
-}
-
-.box-clear {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: $col-dark-op;
-}
-
-.clear-text {
-  display: block;
-  text-align: center;
-  width: $mob;
-  margin: 300px auto;
-
-  > button {
-    margin-left: 20px;
-    width: 50px;
-    height: 30px;
-  }
-}
-
-.wrap-report {
-  margin: 100px auto;
-  width: 400px;
-}
-
-.closeReport {
-  position: relative;
-  right: 50px;
-  top: 35px;
-  font-size: $font-s;
-}
-
-#report {
-  font-family: $font;
   font-size: $font-m;
 }
 
-.report-buttons {
-  margin-top: 10px;
-}
-
-.box-content {
-  display: flex;
-  flex-direction: column;
-  margin: 25px auto;
-}
-
-@media (max-width: $mob) {
-  .box-content {
-    width: 90vw;
+.total-num {
+  margin-left: 2vw;
+  @media (min-width: $tab) {
+    margin-left: $mar-top;
   }
 }
 
-.string {
-  position: relative;
-  width: 60vw;
-  display: flex;
-  align-items: center;
+.control {
+  width: 150px;
+  font-size: $font-m;
   justify-content: space-between;
+  @media (min-width: $tab) {
+    margin-top: $mar-top;
+  }
 }
 
-@media (max-width: $tab) {
-  .string {
-    width: 90vw;
+.box-content {
+  margin-top: $mar-top;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.string {
+  width: calc(100vw - 30px);
+  margin-left: 30px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-s;
+  @media (min-width: $tab) {
+    width: 100%;
+    margin-top: 5px;
   }
 }
 
 .text {
-  font-size: $font-m;
-  flex: 2 1 70%;
-  margin-left: 5px;
-}
-
-@media (max-width: $mob) {
-  .text {
-    font-size: $font-s;
-  }
-}
-
-.plusminus {
-  margin-right: 10px;
-  font-size: $font-m;
+  flex: 1 1 80%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .number {
-  font-size: $font-m;
+  flex: 0 1 20%;
   text-align: center;
-  flex: 1 1 15%;
 }
 
-@media (max-width: $mob) {
-  .number {
-    font-size: $font-s;
-  }
+.plusminus {
+  flex: 0 1 auto;
+  margin: 0 5px;
+}
+
+.del-string  {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: $col-dark-op;
+}
+
+.del-string__wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.del-string__text {
+  margin: 0 30px;
 }
 
 .delete-string {
   position: absolute;
   left: -35px;
-  margin-left: 5px;
-}
-
-.text-del-string {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  background-color: $col-dark-op;
-  z-index: 1;
+  @media (min-width: $des) {
+    left: -50px;
+  }
 }
 
 .yes, .no {
-  margin: 0 10px 0;
   width: 50px;
-  height: 30px;
+}
+
+.box-clear {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: $col-dark-op;
+}
+
+
+
+.box-wrap {
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  @media (min-width: $tab) {
+    height: 70%;
+  }
+}
+
+.clear-yes, .clear-no {
+  margin: 0 20px;
+}
+
+.report-wrap {
+  position: relative;
+  max-width: 95vw;
+  margin: $mar-top auto;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: $mob) {
+    max-width: 80vw;
+    margin-top: 8vw;
+  }
+  @media (min-width: $tab) {
+    max-width: 60vw;
+    margin-top: 8vw;
+  }
+  @media (min-width: $des) {
+    max-width: 40vw;
+    margin-top: 8vw;
+  }
+}
+
+.report-buttons {
+  margin-top: $mar-top;
+}
+
+.closeReport {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 #newString {
-  width: 50px;
-}
-
-.icon-plus2 {
-  font-size: 200%;
+  margin-top: $mar-top;
+  font-size: 200%;;
 }
