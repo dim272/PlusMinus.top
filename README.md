@@ -5,4 +5,4 @@
 * Fормирует отчёт и копирует в буфер обмена
 * Nаписан под свои повседневные задачи, в целях ознакомления с jQuery
 
-https://plusminus.top/
+https://dim272.github.io/PlusMinus.top/
