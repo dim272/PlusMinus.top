@@ -31,20 +31,20 @@ Built with **jQuery** for learning purposes, this project demonstrates practical
 ## ⚙️ How to Run Locally
 
 1. Clone the repository:
-   <dots>bash
+   ```bash
    git clone https://github.com/dim272/PlusMinus.top.git
    cd PlusMinus.top
-   <dots>
+   ```
 
 2. Install dependencies:
-   <dots>bash
+   ```bash
    npm install
-   <dots>
+   ```
 
 3. Start the development server:
-   <dots>bash
+   ```bash
    npm start
-   <dots>
+   ```
    This runs the Gulp `start` task, which compiles assets and launches a live-reload server.
 
 4. Open your browser at `http://localhost:3000`.
